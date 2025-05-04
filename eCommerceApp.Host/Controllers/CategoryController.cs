@@ -30,6 +30,9 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     [HttpPost("")]
     public async Task<IActionResult> Add([FromBody] CreateCategoryRequest request)
     {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
         var result = await _categoryService.AddAsync(request);
 
         return result.Success ? Ok(result) : BadRequest(result);
@@ -38,6 +41,9 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     [HttpPut("")]
     public async Task<IActionResult> Update([FromBody] UpdateCategoryRequest request)
     {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
         var result = await _categoryService.UpdateAsync(request);
 
         return result.Success ? Ok(result) : BadRequest(result);
