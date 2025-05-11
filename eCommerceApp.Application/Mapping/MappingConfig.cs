@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using eCommerceApp.Application.DTOs.Category;
+using eCommerceApp.Application.DTOs.Identity;
 using eCommerceApp.Application.DTOs.Product;
 using eCommerceApp.Domain.Entities;
+using eCommerceApp.Domain.Entities.Identity;
 
 namespace eCommerceApp.Application.Mapping;
 public class MappingConfig : Profile
@@ -17,6 +19,8 @@ public class MappingConfig : Profile
         CreateMap<Product, ProductResponse>();
         CreateMap<Category, CategoryResponse>();
 
+        CreateMap<CreateUser, ApplicationUser>();
+        CreateMap<LoginUser, ApplicationUser>();
     }
 }
 
