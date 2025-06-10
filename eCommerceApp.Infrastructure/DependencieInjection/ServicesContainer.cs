@@ -16,6 +16,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using eCommerceApp.Domain.Interfaces.Cart;
+using eCommerceApp.Infrastructure.Repositorys.Cart;
+using eCommerceApp.Application.Services.Interfaces.Cart;
 
 namespace eCommerceApp.Infrastructure.DependencieInjection;
 public static class ServicesContainer
@@ -72,7 +75,12 @@ public static class ServicesContainer
 
         services.AddScoped<IUserManagement, UserManagement>();
         services.AddScoped<IRoleManagement, RoleManagement>();
-        services.AddScoped<ITokenManagement, TokenManagement>();
+        services.AddScoped<ITokenManagement, TokenManagement>();    
+        services.AddScoped<IPaymentMethod, PaymentMethodRepository>();    
+        services.AddScoped<IPaymentService, StripePaymentService>();    
+        services.AddScoped<ICart, CartRepositorys>(); 
+        
+        Stripe.StripeConfiguration.ApiKey = config["Stripe:SecretKey"];
 
         return services;
     }

@@ -3,6 +3,7 @@ using eCommerceApp.Application.DependencieInjection;
 using Scalar.AspNetCore;
 using Serilog;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 Log.Logger = new LoggerConfiguration()

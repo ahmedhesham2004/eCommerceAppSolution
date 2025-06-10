@@ -1,8 +1,10 @@
 ﻿using eCommerceApp.Application.Mapping;
 using eCommerceApp.Application.Services.Implementations;
 using eCommerceApp.Application.Services.Implementations.Authentication;
+using eCommerceApp.Application.Services.Implementations.Cart;
 using eCommerceApp.Application.Services.Interfaces;
 using eCommerceApp.Application.Services.Interfaces.Authentication;
+using eCommerceApp.Application.Services.Interfaces.Cart;
 using eCommerceApp.Application.Validation;
 using eCommerceApp.Application.Validation.Authentication;
 using FluentValidation;
@@ -18,6 +20,8 @@ public static class ServiceContainer
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<IPaymentMethodService, PaymentMethodService>();
+        services.AddScoped<ICartServices, CartServices>();
 
         services.AddFluentValidationAutoValidation();
         services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
